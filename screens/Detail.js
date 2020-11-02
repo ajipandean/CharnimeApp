@@ -7,14 +7,17 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import { Appbar, Button, Title, Subheading, Colors } from 'react-native-paper';
+import { Appbar, Button, Title, Subheading, Colors, List, Paragraph } from 'react-native-paper';
 import avatar from '../data/avatar';
 
 const Detail = ({ route, navigation }) => {
   const { res } = route.params;
+  const [expanded, setExpanded] = React.useState(false);
+
+  const expandHandler = () => setExpanded(!expanded);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <Appbar.Header>
         <Appbar.BackAction onPress={() => navigation.goBack()}/>
         <Appbar.Content title={res.name}/>
@@ -37,6 +40,29 @@ const Detail = ({ route, navigation }) => {
           <Title>{res.name}</Title>
           <Text style={{ color: Colors.grey600 }}>{res.from}</Text>
         </View>
+        <List.Accordion
+          title="Appearance"
+          left={props => <List.Icon {...props} icon="face"/>}
+        >
+          <View style={{
+            flex: 1,
+            marginHorizontal: 8,
+          }}>
+            <Paragraph>{res.appearance}</Paragraph>
+          </View>
+        </List.Accordion>
+        <List.Accordion
+          title="Personality"
+          left={props => <List.Icon {...props} icon="human"/>}
+        >
+          <View style={{
+            flex: 1,
+            marginHorizontal: 8,
+            marginBottom: 16,
+          }}>
+            <Paragraph>{res.personality}</Paragraph>
+          </View>
+        </List.Accordion>
       </ScrollView>
       <StatusBar style="inverted"/>
     </SafeAreaView>
