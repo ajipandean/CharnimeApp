@@ -6,7 +6,7 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import { Appbar, Button, List, Avatar } from 'react-native-paper';
+import { Appbar, Button, List } from 'react-native-paper';
 import imouto from '../data/imouto';
 import avatar from '../data/avatar';
 
@@ -25,13 +25,15 @@ const Home = ({ navigation }) => {
             onPress={() => navigation.navigate('detail', { res })}
             titleStyle={{ fontWeight: 'bold' }}
             descriptionNumberOfLines={1}
-            right={() => (
+            style={{ marginRight: 8 }}
+            left={props => (
               <Image
+                {...props}
                 style={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: 3,
-                  marginLeft: 16,
+                  width: 48,
+                  height: 48,
+                  borderRadius: 80,
+                  marginHorizontal: 8
                 }}
                 source={avatar[res.code]}
               />
